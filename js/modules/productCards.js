@@ -1,5 +1,3 @@
-
-
 const renderProduct = (product) => {
     const li = document.createElement('li');
     li.classList.add('product', 'item', 'column', 'aic', 'js-product');
@@ -29,18 +27,15 @@ const renderProduct = (product) => {
                     </li>`
     return li;
 }
-
 const appendProductCards = (product, container) => {
     container.append(product);
 }
-
 const renderProductCards = (products, container) => {
     products.forEach((element) => {
         const card = renderProduct(element);
         appendProductCards(card, container);
     });
 }
-
 export default {renderProductCards};
 
 

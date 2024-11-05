@@ -26,14 +26,15 @@
 
 
 
-import product from './products.js';
-
+import products from './products.js';
 import render from './modules/productCards.js';
+import pagination from './modules/paginations.js';
 
 window.addEventListener('DOMContentLoaded', function(){
-
     const productsContainer = document.querySelector('.js-products-list');
-    
-    render.renderProductCards(product, productsContainer);
+    render.renderProductCards(products, productsContainer);
+
+    //Pagination
+    pagination.pagination(products);
 })
 
