@@ -31,6 +31,7 @@ const appendProductCards = (product, container) => {
     container.append(product);
 }
 const renderProductCards = (products, container) => {
+    container.innerHTML = '';
     products.forEach((element) => {
         const card = renderProduct(element);
         appendProductCards(card, container);

@@ -30,7 +30,7 @@ import pagination from './modules/paginations.js';
 
 import {closeCard, openCard} from './modules/cardPopup.js';
 import { cardData } from './modules/cardData.js';
-
+import { filter } from './modules/filter.js';
 window.addEventListener('DOMContentLoaded', function(){
     const productsContainer = document.querySelector('.js-products-list');
     render.renderProductCards(products, productsContainer);
@@ -40,6 +40,6 @@ window.addEventListener('DOMContentLoaded', function(){
     cardData();
     closeCard();
     openCard();
-    
+    filter(products, productsContainer);
 })
 
