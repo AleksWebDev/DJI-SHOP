@@ -24,11 +24,12 @@
 // });
 
 
-
-
 import products from './products.js';
 import render from './modules/productCards.js';
 import pagination from './modules/paginations.js';
+
+import {closeCard, openCard} from './modules/cardPopup.js';
+import { cardData } from './modules/cardData.js';
 
 window.addEventListener('DOMContentLoaded', function(){
     const productsContainer = document.querySelector('.js-products-list');
@@ -36,5 +37,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
     //Pagination
     pagination.pagination(products);
+    cardData();
+    closeCard();
+    openCard();
+    
 })
 
