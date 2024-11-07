@@ -6,6 +6,7 @@ const cardData = () => {
     const cartEmpty = document.querySelector('.js-cart-empty-container');
     const cartOrder = document.querySelector('.js-cart-order-container');
 
+
     const updateCartItemCount = () =>{
         cart.addEventListener('click', function(e){
 
