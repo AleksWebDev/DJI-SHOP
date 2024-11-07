@@ -6,13 +6,15 @@ const filter = (products, productsContainr) => {
     const showMore = document.querySelector('.btn-show-more');
     const pagination = document.querySelector('.pagination')
     const priceFilterSelect = document.querySelector('.js-filter-price-select');
+    const priceInputs = document.querySelectorAll('.js-filter-price-input');
 
     const inputSearch = document.querySelector('.js-input-search');
 
     let currentSeriesFilter = null;
     let currentPriceFilterSelect = 'default';
+    let currentPriceFilterInputs = {min: 0, max: Infinity};
 
-    const filterProducts = (filter, filterInputSearch) => {
+    const filterProducts = (filter, filterInputSearch, priceRange) => {
         let filteredProducts = products.filter((product) => {
             if(filter && product.series !== filter){
                 return false;
@@ -22,6 +24,10 @@ const filter = (products, productsContainr) => {
                 return false;
             }
 
+            const price = parseInt(product.prices[0].replace(/\s/g, ''), 10);
+            if(price < priceRange.min || price > priceRange.max){
+                return false;
+            }
             return true;
         })
 
@@ -43,7 +49,7 @@ const filter = (products, productsContainr) => {
     }
 
     const applyFilters = () => {
-        const filteredProducts = filterProducts(currentSeriesFilter, inputSearch.value);
+        const filteredProducts = filterProducts(currentSeriesFilter, inputSearch.value, currentPriceFilterInputs);
         render.renderProductCards(filteredProducts, productsContainr);
         pagination.classList.add('hidden');
     }
@@ -83,6 +89,21 @@ const filter = (products, productsContainr) => {
             applyFilters();
         })
     }
+
+    const handlePriceInputChange = () => {
+        const minPrice = parseInt(priceInputs[0].value, 10) || 0;
+        const maxPrice = parseInt(priceInputs[1].value, 10) || Infinity;
+
+        currentPriceFilterInputs = {min: minPrice, max: maxPrice};
+
+        applyFilters();
+    }
+
+    priceInputs.forEach((input) => {
+        input.addEventListener('input', () => {
+            handlePriceInputChange();
+        })
+    })
 
     handleSeriesFilterClick();
     handlePriceFilterClick();
